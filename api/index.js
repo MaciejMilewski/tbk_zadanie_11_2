@@ -33,10 +33,6 @@ app.get('/', (req, res) => {
 
     res.send('<a href="/add/10/77">Dodaj 10 i 77</a><br>');
 
-    checkouts.inc({
-        i: i+1
-    })
-
     end({ route, code: res.statusCode, method: req.method });
 });
 
@@ -49,6 +45,9 @@ app.get('/add/:x/:y', (req, res) => {
     const end = httpRequestTimer.startTimer();
     const route = req.route.path;
     let result = (parseInt(req.params['x']) + parseInt(req.params['y'])).toString();
+    checkouts.inc({
+        i: i+1
+    })
     res.send(result);
     end({ route, code: res.statusCode, method: req.method });
 });
